@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=roberta_hyperparameter_search
-#SBATCH --output=/scratch/xl3139/MLLU/MLLU-HW3/log/%j_%x.out
-#SBATCH --error=/scratch/xl3139/MLLU/MLLU-HW3/log/%j_%x.err
+#SBATCH --output=/scratch/xl3139/MLLU/MLLU-HW3/log/Mar06_%j_%x.out
+#SBATCH --error=/scratch/xl3139/MLLU/MLLU-HW3/log/Mar06_%j_%x.err
 #SBATCH --export=ALL
 #SBATCH --mail-user=xl3139@nyu.edu
 #SBATCH --mail-type=ALL
 #SBATCH --account=ds_ga_1012_2022sp
-#SBATCH --partition=n1s8-t4-1
+#SBATCH --partition=n1s8-v100-1
 #SBATCH --time=04:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --mem=20G

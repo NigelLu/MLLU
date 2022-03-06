@@ -1,0 +1,6 @@
+/bin/bash: line 1: /ext3/env.sh: No such file or directory
+/bin/bash: line 2: conda: command not found
+  File "run_hyperparameter_search.py", line 28
+    train_df = pd.read_json(f"{args.data_dir}/train.jsonl", lines=True, orient="records")
+                                                         ^
+SyntaxError: invalid syntax

@@ -1,0 +1,4 @@
+  File "run_hyperparameter_search.py", line 92
+    mode='min',
+       ^
+SyntaxError: invalid syntax
