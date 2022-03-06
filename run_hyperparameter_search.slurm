@@ -4,6 +4,8 @@
 #SBATCH --output=/scratch/${USER}/%j_%x.out
 #SBATCH --error=/scratch/${USER}/%j_%x.err
 #SBATCH --export=ALL
+#SBATCH --mail-user=xl3139@nyu.edu
+#SBATCH --mail-type=ALL
 #SBATCH --account=ds_ga_1012_2022sp
 #SBATCH --partition=n1s8-t4-1
 #SBATCH --time=04:00:00
@@ -11,5 +13,10 @@
 #SBATCH --mem=20G
 #SBATCH -c 4
 
+
 ## TODO: Run your hyperparameter search in a singularity container. Remember to 
 ## activate your Conda environment in the container before running your Python script.
+singularity exec --nv --bind /scratch/$USER --overlay /scratch/$USER/overlay-25GB-500K.ext3:ro /scratch/$USER/cuda11.4.2-cudnn8.2.4-devel-ubuntu20.04.3.sif /bin/bash -c "
+conda activate nlp
+cd /scratch/${USER}/MLLU/MLLU-HW3
+"

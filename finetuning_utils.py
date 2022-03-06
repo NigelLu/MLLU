@@ -1,5 +1,5 @@
 import numpy as np
-from transformers import Trainer, RobertaModel
+from transformers import Trainer, RobertaForSequenceClassification
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 
 def compute_metrics(eval_pred):
@@ -25,10 +25,8 @@ def model_init():
     """Returns an initialized model for use in a Hugging Face Trainer."""
     ## TODO: Return a pretrained RoBERTa model for sequence classification.
     ## See https://huggingface.co/transformers/model_doc/roberta.html#robertaforsequenceclassification.
-    model = RobertaModel.from_pretrained(
-        'roberta-base',
-        dropout=0.1,
-        attention_dropout=0.1,
+    model = RobertaForSequenceClassification.from_pretrained(
+        'roberta-base'
     )
 
     return model
