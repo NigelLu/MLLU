@@ -82,11 +82,13 @@ tune_config = {
 trainer.hyperparameter_search(
     direction='maximize',
     backend='ray',
+    hp_space=lambda _: {
+        'learning_rate': tune.uniform(1e-5, 5e-5),
+    },
     search_alg=BayesOptSearch(
-        space=tune.uniform(1e-5, 5e-5),
-        random_state=0,
         metric='objective',
-        mode='max'
+        mode='max',
+        random_state=0
     ),
     n_trials=10
 )
