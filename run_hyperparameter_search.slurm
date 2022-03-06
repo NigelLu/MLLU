@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=roberta_hyperparameter_search
-#SBATCH --output=/scratch/xl3139/log/%j_%x.out
-#SBATCH --error=/scratch/xl3139/log/%j_%x.err
+#SBATCH --output=/scratch/xl3139/MLLU/MLLU-HW3/log/%j_%x.out
+#SBATCH --error=/scratch/xl3139/MLLU/MLLU-HW3/log/%j_%x.err
 #SBATCH --export=ALL
 #SBATCH --mail-user=xl3139@nyu.edu
 #SBATCH --mail-type=ALL

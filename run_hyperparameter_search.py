@@ -43,8 +43,8 @@ training_args = TrainingArguments(
     output_dir="./models/",
     do_train=True,
     do_eval=True,
-    per_gpu_train_batch_size=8,
-    per_gpu_eval_batch_size=64,
+    per_device_train_batch_size=8,
+    per_device_eval_batch_size=64,
     num_train_epochs=3,
     logging_steps=500,
     logging_first_step=True,
@@ -86,7 +86,9 @@ trainer.hyperparameter_search(
     hp_space=lambda _: {
         'learning_rate': tune.uniform(1e-5, 5e-5),
     },
-    search_alg=BayesOptSearch(),
-    compute_objective=lambda metrics: metrics['f1'],
+    search_alg=BayesOptSearch(
+        mode='max',
+    ),
+    compute_objective=lambda metrics: metrics['eval_f1'],
     n_trials=10
 )
