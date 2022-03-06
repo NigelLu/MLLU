@@ -1,8 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=roberta_hyperparameter_search
-#SBATCH --open-mode=append
-#SBATCH --output=/scratch/${USER}/%j_%x.out
-#SBATCH --error=/scratch/${USER}/%j_%x.err
+#SBATCH --output=/scratch/xl3139/log/%j_%x.out
+#SBATCH --error=/scratch/xl3139/log/%j_%x.err
 #SBATCH --export=ALL
 #SBATCH --mail-user=xl3139@nyu.edu
 #SBATCH --mail-type=ALL
@@ -16,7 +15,9 @@
 
 ## TODO: Run your hyperparameter search in a singularity container. Remember to 
 ## activate your Conda environment in the container before running your Python script.
-singularity exec --nv --bind /scratch/$USER --overlay /scratch/$USER/overlay-25GB-500K.ext3:ro /scratch/$USER/cuda11.4.2-cudnn8.2.4-devel-ubuntu20.04.3.sif /bin/bash -c "
+singularity exec --nv --bind /scratch/xl3139 --overlay /scratch/xl3139/back-sing-nlp.ext3:ro /scratch/xl3139/cuda11.4.2-cudnn8.2.4-devel-ubuntu20.04.3.sif /bin/bash -c "
+source /ext3/env.sh
 conda activate nlp
-cd /scratch/${USER}/MLLU/MLLU-HW3
+cd /scratch/xl3139/MLLU/MLLU-HW3
+python run_hyperparameter_search.py 'data/BoolQ'
 "

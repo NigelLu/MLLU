@@ -70,6 +70,7 @@ trainer = Trainer(
     eval_dataset=val_data,
     model_init=finetuning_utils.model_init,
     compute_metrics=finetuning_utils.compute_metrics,
+    tokenizer=tokenizer,
 )
 
 tune_config = {
@@ -85,10 +86,7 @@ trainer.hyperparameter_search(
     hp_space=lambda _: {
         'learning_rate': tune.uniform(1e-5, 5e-5),
     },
-    search_alg=BayesOptSearch(
-        metric='objective',
-        mode='max',
-        random_state=0
-    ),
+    search_alg=BayesOptSearch(),
+    compute_objective=lambda metrics: metrics['f1'],
     n_trials=10
 )
