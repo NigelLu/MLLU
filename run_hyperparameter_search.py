@@ -73,13 +73,6 @@ trainer = Trainer(
     tokenizer=tokenizer,
 )
 
-tune_config = {
-    'lr': tune.uniform(1e-5, 5e-5),
-    'per_device_train_batch_size': 8,
-    'per_device_eval_batch_size': 64,
-
-}
-
 obj = trainer.hyperparameter_search(
     direction='maximize',
     backend='ray',
